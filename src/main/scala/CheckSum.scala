@@ -4,11 +4,9 @@ object CheckSum {
   def performCheckSum(boxIds: List[String]): Int = {
     val distinctCharInBoxIds = calculateDistinctCharacters(boxIds)
     val doubleTripleListPerBoxId = filterDoubleTriples(distinctCharInBoxIds)
-    val dtTouple = concatDoubleTrippleString(doubleTripleListPerBoxId)
-    val doubleString = dtTouple._1
-    val tripleString = dtTouple._2
-    val uniqueDoubleCount = distinctCharInString(doubleString).length
-    val uniqueTripleCount = distinctCharInString(tripleString).length
+    val dtTuple = concatDoubleTripleString(doubleTripleListPerBoxId)
+    val uniqueDoubleCount = distinctCharInString(dtTuple.doubleString).length
+    val uniqueTripleCount = distinctCharInString(dtTuple.tripleString).length
     uniqueDoubleCount * uniqueTripleCount
   }
 
@@ -24,7 +22,7 @@ object CheckSum {
     distinctCharInBoxIds.map(_.filter(charCount => charCount._2 == 2 || charCount._2 == 3))
   }
 
-  def concatDoubleTrippleString(doubleTripleListPerBoxId: List[List[(Char, Int)]]): (String, String) = {
+  def concatDoubleTripleString(doubleTripleListPerBoxId: List[List[(Char, Int)]]): DistinctMultipliers = {
     var doubleString = ""
     var tripleString = ""
     doubleTripleListPerBoxId.foreach(_.foreach(charCount =>
@@ -34,7 +32,7 @@ object CheckSum {
         tripleString = tripleString.concat(charCount._1.toString)
     )
     )
-    (doubleString, tripleString)
+    DistinctMultipliers(doubleString, tripleString)
   }
 
   def distinctCharInString(input: String): String = {
@@ -42,3 +40,5 @@ object CheckSum {
   }
 
 }
+
+case class DistinctMultipliers(doubleString: String, tripleString: String)
