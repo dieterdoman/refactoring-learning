@@ -7,14 +7,14 @@ object CheckSum {
     val dtTouple = concatDoubleTrippleString(doubleTripleListPerBoxId)
     val doubleString = dtTouple._1
     val tripleString = dtTouple._2
-    val uniqueDoubleCount = doubleString.toSeq.distinct.unwrap.length
-    val uniqueTripleCount = tripleString.toSeq.distinct.unwrap.length
+    val uniqueDoubleCount = distinctCharInString(doubleString).length
+    val uniqueTripleCount = distinctCharInString(tripleString).length
     uniqueDoubleCount * uniqueTripleCount
   }
 
   def calculateDistinctCharacters(boxIds: List[String]): List[List[(Char, Int)]] = {
     boxIds.map(boxId =>
-      boxId.toSeq.distinct.unwrap.toList.map(char =>
+      distinctCharInString(boxId).toList.map(char =>
         (char, boxId.count(_ == char))
       )
     )
@@ -35,6 +35,10 @@ object CheckSum {
     )
     )
     (doubleString, tripleString)
+  }
+
+  def distinctCharInString(input: String): String = {
+    input.toSeq.distinct.unwrap
   }
 
 }
