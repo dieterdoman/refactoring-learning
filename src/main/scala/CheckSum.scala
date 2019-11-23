@@ -3,7 +3,7 @@ object CheckSum {
 
   def performCheckSum(boxIds: List[String]): Int = {
     val distinctCharInBoxIds = calculateDistinctCharacters(boxIds)
-    val doubleTripleListPerBoxId = distinctCharInBoxIds.map(_.filter(charCount => charCount._2 == 2 || charCount._2 == 3))
+    val doubleTripleListPerBoxId = filterDoubleTriples(distinctCharInBoxIds)
     var doubleString = ""
     var tripleString = ""
     doubleTripleListPerBoxId.foreach(_.foreach(charCount =>
@@ -24,5 +24,9 @@ object CheckSum {
         (char, boxId.count(_ == char))
       )
     )
+  }
+
+  def filterDoubleTriples(distinctCharInBoxIds: List[List[(Char, Int)]]): List[List[(Char, Int)]] = {
+    distinctCharInBoxIds.map(_.filter(charCount => charCount._2 == 2 || charCount._2 == 3))
   }
 }
