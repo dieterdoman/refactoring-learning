@@ -1,8 +1,10 @@
 # Install sbt
 
+Here is some documentation on [SBT](https://www.scala-sbt.org/learn.html).
+
 To install sbt you need to install java and scala first.
 
-This is great guide to install sbt on linux [SBT](https://www.techrepublic.com/article/how-to-install-sbt-on-ubuntu-for-scala-and-java-projects/).
+This is great guide to install sbt on linux [SBT install](https://www.techrepublic.com/article/how-to-install-sbt-on-ubuntu-for-scala-and-java-projects/).
 
 ## Run project
 
