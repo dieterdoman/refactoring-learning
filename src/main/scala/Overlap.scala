@@ -4,7 +4,7 @@ object Overlap {
     val claimInfos = spaceLines.map(element => element.split('@')(1))
     val foobar = claimInfos.map(element => element.split(":"))
     val claimBlocks = foobar.map(element => (element(0).split(","),  element(1).split("x")))
-    val size = 10
+    val size = 1000
     val MehMatrix = Array.ofDim[Int](size,size)
     claimBlocks.foreach(element => {
       val left = element._1(0).toInt
